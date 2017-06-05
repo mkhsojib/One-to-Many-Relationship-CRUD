@@ -32,22 +32,31 @@ Route::get('/create', function () {
 });
 
 
-Route::get('/read', function (){
+Route::get('/read', function () {
 
-  $user =  User::findOrFail(1);
+    $user = User::findOrFail(1);
 
-   foreach ($user->posts as $post){
+    foreach ($user->posts as $post) {
 
-    echo $post->title . '<br>';
-   }
+        echo $post->title . '<br>';
+    }
 
 });
 
 
-Route::get('/update', function (){
+Route::get('/update', function () {
 
-   $user = User::find(1);
+    $user = User::find(1);
 
-    $user->posts()->where('id', '=', 2)->update(['title'=>'laravel is nice', 'body'=>'laravel 5.4 will update']);
+    $user->posts()->where('id', '=', 2)->update(['title' => 'laravel is nice', 'body' => 'laravel 5.4 will update']);
 
+});
+
+Route::get('/delete', function () {
+
+    $user = User::find(1);
+
+
+
+    $user->posts()->whereId(1)->delete();
 });
