@@ -42,3 +42,12 @@ Route::get('/read', function (){
    }
 
 });
+
+
+Route::get('/update', function (){
+
+   $user = User::find(1);
+
+    $user->posts()->where('id', '=', 2)->update(['title'=>'laravel is nice', 'body'=>'laravel 5.4 will update']);
+
+});
