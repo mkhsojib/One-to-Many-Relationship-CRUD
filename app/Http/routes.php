@@ -19,6 +19,8 @@ Route::get('/', function () {
 });
 
 
+//  One to Many Relationship CRUD
+
 Route::get('/create', function () {
 
     $user = User::findOrFail(1);
@@ -26,5 +28,17 @@ Route::get('/create', function () {
 //    $post = new Post(['title' => 'this is post title', 'body' => 'this is post content']);
 
     $user->posts()->save(new Post(['title' => 'this is post title', 'body' => 'this is post content']));
+
+});
+
+
+Route::get('/read', function (){
+
+  $user =  User::findOrFail(1);
+
+   foreach ($user->posts as $post){
+
+    echo $post->title . '<br>';
+   }
 
 });
